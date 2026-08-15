@@ -213,7 +213,7 @@ def patch_draft_content_json(
             
             for track in data.get('tracks', []):
                 if track.get('name') in image_track_names:
-                    for seg in track.get('segments', []):
+                    for seg in track.get('segments', [])[:1]:
                         eff_id = uuid.uuid4().hex.upper()
                         if 'extra_material_refs' not in seg:
                             seg['extra_material_refs'] = []

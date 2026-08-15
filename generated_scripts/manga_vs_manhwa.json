@@ -1,0 +1,109 @@
+{
+  "topic": "Manga vs Manhwa",
+  "approved_variant_id": 2,
+  "angle_name": "Visual Rendering & Art Style Mechanics",
+  "title": "Why Manhwa is ALWAYS in Color (Manga vs Manhwa) #shorts",
+  "hashtags": [
+    "#mangavsmanhwa",
+    "#manga",
+    "#manhwa",
+    "#sololeveling",
+    "#shorts"
+  ],
+  "estimated_duration_seconds": 29.3,
+  "word_count": 82,
+  "speaking_pace_wps": 2.8,
+  "full_script_text": "This is Manga. This is Manhwa. So what's the difference? Most people think it's just the country of origin. It's not. Manga relies on black and white ink, using screentones and precise line weight to create depth without color. Manhwa strips away screentones entirely, relying on full digital color gradients to drive cinematic lighting and action. Manga relies on shadow and line, while Manhwa relies on dynamic color and light. Next is Webtoons vs Light Novels. Follow so you don't miss it.",
+  "final_rule_outro": "Manga relies on shadow and line, while Manhwa relies on dynamic color and light.",
+  "stickman_visual": "Stickman standing on a white screen with two art frames: MANGA shown as high-contrast ink crosshatching, and MANHWA shown with glowing digital lighting gradients.",
+  "patterns_used": [
+    "Declaration + Contract Hook (0-3s)",
+    "Misconception Flip Bridge",
+    "Mechanical Axis Contrast",
+    "Chiastic Mirrored Payoff",
+    "Specific Franchise Forward Tease"
+  ],
+  "script_lines": [
+    {
+      "second_marker": "0:00-0:03",
+      "move_name": "Move 1 - The Declaration",
+      "text": "This is Manga. This is Manhwa."
+    },
+    {
+      "second_marker": "0:03-0:04",
+      "move_name": "Move 2 - The Contract",
+      "text": "So what's the difference?"
+    },
+    {
+      "second_marker": "0:04-0:09",
+      "move_name": "Move 3 - The Misconception Flip",
+      "text": "Most people think it's just the country of origin. It's not."
+    },
+    {
+      "second_marker": "0:09-0:16",
+      "move_name": "Move 4 - Mechanism A",
+      "text": "Manga relies on black and white ink, using screentones and precise line weight to create depth without color."
+    },
+    {
+      "second_marker": "0:16-0:23",
+      "move_name": "Move 5 - Mechanism B",
+      "text": "Manhwa strips away screentones entirely, relying on full digital color gradients to drive cinematic lighting and action."
+    },
+    {
+      "second_marker": "0:23-0:27",
+      "move_name": "Move 6 - The Chiastic Payoff",
+      "text": "Manga relies on shadow and line, while Manhwa relies on dynamic color and light."
+    },
+    {
+      "second_marker": "0:27-0:29",
+      "move_name": "Move 7 - Forward Tease",
+      "text": "Next is Webtoons vs Light Novels. Follow so you don't miss it."
+    }
+  ],
+  "tts_segments": [
+    {
+      "segment_id": 1,
+      "timing": "0:00-0:03",
+      "move": "Move 1 - The Declaration",
+      "text": "This is Manga. This is Manhwa."
+    },
+    {
+      "segment_id": 2,
+      "timing": "0:03-0:04",
+      "move": "Move 2 - The Contract",
+      "text": "So what's the difference?"
+    },
+    {
+      "segment_id": 3,
+      "timing": "0:04-0:09",
+      "move": "Move 3 - The Misconception Flip",
+      "text": "Most people think it's just the country of origin. It's not."
+    },
+    {
+      "segment_id": 4,
+      "timing": "0:09-0:16",
+      "move": "Move 4 - Mechanism A",
+      "text": "Manga relies on black and white ink, using screentones and precise line weight to create depth without color."
+    },
+    {
+      "segment_id": 5,
+      "timing": "0:16-0:23",
+      "move": "Move 5 - Mechanism B",
+      "text": "Manhwa strips away screentones entirely, relying on full digital color gradients to drive cinematic lighting and action."
+    },
+    {
+      "segment_id": 6,
+      "timing": "0:23-0:27",
+      "move": "Move 6 - The Chiastic Payoff",
+      "text": "Manga relies on shadow and line, while Manhwa relies on dynamic color and light."
+    },
+    {
+      "segment_id": 7,
+      "timing": "0:27-0:29",
+      "move": "Move 7 - Forward Tease",
+      "text": "Next is Webtoons vs Light Novels. Follow so you don't miss it."
+    }
+  ],
+  "created_at": "2026-08-15T20:17:33.136027",
+  "status": "ready_for_tts"
+}

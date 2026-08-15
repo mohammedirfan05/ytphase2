@@ -200,6 +200,82 @@ def optimize_caption_timeline(
     return optimized_captions, stats
 
 
+def compute_card_spotlight_segments(
+    tagged_subtitles: List[TaggedSubtitle],
+    img2_start_us: int,
+    total_duration_us: int
+) -> Tuple[List[Dict], List[Dict]]:
+    """
+    Computes precise time ranges for spotlighting Image 1 vs Image 2:
+    - Phase 1 (0 -> Move 4 start): Both Normal (scale 1.0, alpha 1.0)
+    - Phase 2 (Move 4 start -> Move 5 start): Entity X Spotlight (img1 scale 1.06/alpha 1.0, img2 scale 0.95/alpha 0.55)
+    - Phase 3 (Move 5 start -> Move 6 start): Entity Y Spotlight (img2 scale 1.06/alpha 1.0, img1 scale 0.95/alpha 0.55)
+    - Phase 4 (Move 6 start -> End): Both Normal (scale 1.0, alpha 1.0)
+    """
+    if not tagged_subtitles:
+        return (
+            [{"start": 0, "dur": total_duration_us, "scale_mult": 1.0, "alpha": 1.0}],
+            [{"start": img2_start_us, "dur": max(100_000, total_duration_us - img2_start_us), "scale_mult": 1.0, "alpha": 1.0}]
+        )
+
+    # 1. Detect Move 4 Start: First block after Move 3 (after 3.5s) discussing Entity X
+    move4_start = None
+    for s in tagged_subtitles:
+        if s.start_us >= 3_500_000 and move4_start is None:
+            if "entity x" in s.rule_name.lower() or s.pose == "left":
+                move4_start = s.start_us
+                break
+
+    if move4_start is None:
+        move4_start = max(img2_start_us + 1_500_000, 4_000_000)
+
+    # 2. Detect Move 5 Start: First block where Entity Y is introduced for Mechanism B
+    move5_start = None
+    for s in tagged_subtitles:
+        if s.start_us > move4_start + 2_000_000 and move5_start is None:
+            if "entity y" in s.rule_name.lower() or s.pose == "right":
+                move5_start = s.start_us
+                break
+
+    if move5_start is None:
+        move5_start = move4_start + int((total_duration_us - move4_start) * 0.4)
+
+    # 3. Detect Move 6 Start: First block after Move 5 introducing Chiastic Payoff / Outro
+    move6_start = None
+    for s in tagged_subtitles:
+        if s.start_us > move5_start + 2_000_000 and move6_start is None:
+            r_low = s.rule_name.lower()
+            t_low = s.text.lower()
+            if "entity x" in r_low or "while" in t_low or "whereas" in t_low or "takeaway" in r_low or "outro" in r_low or s.pose in {"final_end", "remember_this", "twohandsopen"}:
+                move6_start = s.start_us
+                break
+
+    if move6_start is None:
+        move6_start = move5_start + int((total_duration_us - move5_start) * 0.5)
+
+    # Build Image 1 spotlight segments
+    img1_segs = []
+    if move4_start > 0:
+        img1_segs.append({"start": 0, "dur": move4_start, "scale_mult": 1.0, "alpha": 1.0})
+    img1_segs.append({"start": move4_start, "dur": max(100_000, move5_start - move4_start), "scale_mult": 1.06, "alpha": 1.0})
+    if move6_start > move5_start:
+        img1_segs.append({"start": move5_start, "dur": max(100_000, move6_start - move5_start), "scale_mult": 0.95, "alpha": 0.55})
+    if total_duration_us > move6_start:
+        img1_segs.append({"start": move6_start, "dur": max(100_000, total_duration_us - move6_start), "scale_mult": 1.0, "alpha": 1.0})
+
+    # Build Image 2 spotlight segments
+    img2_segs = []
+    if move4_start > img2_start_us:
+        img2_segs.append({"start": img2_start_us, "dur": max(100_000, move4_start - img2_start_us), "scale_mult": 1.0, "alpha": 1.0})
+    if move5_start > move4_start:
+        img2_segs.append({"start": move4_start, "dur": max(100_000, move5_start - move4_start), "scale_mult": 0.95, "alpha": 0.55})
+    img2_segs.append({"start": move5_start, "dur": max(100_000, move6_start - move5_start), "scale_mult": 1.06, "alpha": 1.0})
+    if total_duration_us > move6_start:
+        img2_segs.append({"start": move6_start, "dur": max(100_000, total_duration_us - move6_start), "scale_mult": 1.0, "alpha": 1.0})
+
+    return img1_segs, img2_segs
+
+
 class CapCutDraftBuilder:
     def __init__(self, config: Optional[DraftConfig] = None):
         self.config = config or DraftConfig()
@@ -279,38 +355,54 @@ class CapCutDraftBuilder:
         if img2_start_us == 0 and len(tagged_subtitles) >= 2:
             img2_start_us = tagged_subtitles[1].start_us
 
-        # 3. Comparison Image 1 (Top Left)
+        # Calculate spotlight intervals for Image 1 and Image 2
+        img1_segs_data, img2_segs_data = compute_card_spotlight_segments(tagged_subtitles, img2_start_us, total_duration_us)
+
+        # 3. Comparison Image 1 (Top Left) with Dynamic Card Spotlight
         if image1_path and os.path.isfile(image1_path):
             cropped_img1 = ensure_1to1_crop(image1_path, str(cfg.processed_dir))
             script.add_track(pcc.TrackType.video, "img1_track")
             img1_mat = pcc.VideoMaterial(cropped_img1)
             img1_mat.duration = total_duration_us
-            img1_clip = pcc.ClipSettings(
-                scale_x=cfg.img1_scale,
-                scale_y=cfg.img1_scale,
-                transform_x=cfg.img1_x,
-                transform_y=cfg.img1_y,
-                alpha=1.0
-            )
-            img1_seg = pcc.VideoSegment(img1_mat, pcc.Timerange(0, total_duration_us), clip_settings=img1_clip)
-            script.add_segment(img1_seg, track_name="img1_track")
+            
+            for s_info in img1_segs_data:
+                dur = s_info["dur"]
+                if dur <= 0:
+                    continue
+                s_scale = cfg.img1_scale * s_info["scale_mult"]
+                s_clip = pcc.ClipSettings(
+                    scale_x=s_scale,
+                    scale_y=s_scale,
+                    transform_x=cfg.img1_x,
+                    transform_y=cfg.img1_y,
+                    alpha=s_info["alpha"]
+                )
+                img1_seg = pcc.VideoSegment(img1_mat, pcc.Timerange(s_info["start"], dur), clip_settings=s_clip)
+                script.add_segment(img1_seg, track_name="img1_track")
 
-        # 4. Comparison Image 2 (Top Right)
+        # 4. Comparison Image 2 (Top Right) with Dynamic Card Spotlight
         if image2_path and os.path.isfile(image2_path):
             cropped_img2 = ensure_1to1_crop(image2_path, str(cfg.processed_dir))
             script.add_track(pcc.TrackType.video, "img2_track")
             img2_dur_us = total_duration_us - img2_start_us
             img2_mat = pcc.VideoMaterial(cropped_img2)
             img2_mat.duration = img2_dur_us
-            img2_clip = pcc.ClipSettings(
-                scale_x=cfg.img2_scale,
-                scale_y=cfg.img2_scale,
-                transform_x=cfg.img2_x,
-                transform_y=cfg.img2_y,
-                alpha=1.0
-            )
-            img2_seg = pcc.VideoSegment(img2_mat, pcc.Timerange(img2_start_us, img2_dur_us), clip_settings=img2_clip)
-            script.add_segment(img2_seg, track_name="img2_track")
+
+            for s_info in img2_segs_data:
+                dur = s_info["dur"]
+                if dur <= 0:
+                    continue
+                s_scale = cfg.img2_scale * s_info["scale_mult"]
+                s_clip = pcc.ClipSettings(
+                    scale_x=s_scale,
+                    scale_y=s_scale,
+                    transform_x=cfg.img2_x,
+                    transform_y=cfg.img2_y,
+                    alpha=s_info["alpha"]
+                )
+                img2_seg = pcc.VideoSegment(img2_mat, pcc.Timerange(s_info["start"], dur), clip_settings=s_clip)
+                script.add_segment(img2_seg, track_name="img2_track")
+
 
         # 5. SFX Clicks & Pops
         sfx_click = str(cfg.click_sfx_path)

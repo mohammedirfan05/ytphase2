@@ -266,8 +266,16 @@ def main():
         script_content = None
         if args.script:
             if os.path.isfile(args.script):
-                with open(args.script, "r", encoding="utf-8") as f:
-                    script_content = f.read()
+                if args.script.lower().endswith(".json"):
+                    try:
+                        with open(args.script, "r", encoding="utf-8") as jf:
+                            jdata = json.load(jf)
+                            script_content = jdata.get("full_script_text", "")
+                    except Exception:
+                        pass
+                if not script_content:
+                    with open(args.script, "r", encoding="utf-8") as f:
+                        script_content = f.read()
             else:
                 script_content = args.script
         run_from_audio(
