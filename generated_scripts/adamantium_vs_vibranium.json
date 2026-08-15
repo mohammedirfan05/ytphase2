@@ -1,0 +1,108 @@
+{
+  "topic": "Adamantium vs Vibranium",
+  "approved_variant_id": 1,
+  "angle_name": "Physical and Kinetic Mechanics Contrast",
+  "title": "Adamantium vs Vibranium: You're Getting This Wrong",
+  "hashtags": [
+    "#adamantium",
+    "#vibranium",
+    "#marvel",
+    "#shorts"
+  ],
+  "estimated_duration_seconds": 27.5,
+  "word_count": 77,
+  "speaking_pace_wps": 2.8,
+  "full_script_text": "This is Adamantium. This is Vibranium. So what's the difference? Most people think they both just block bullets. They don't. Adamantium is a man-made alloy engineered for pure, rigid hardness. It never bends, deforms, or absorbs kinetic impact. But Vibranium is an extraterrestrial metal that absorbs kinetic energy directly into its atomic bonds, nullifying momentum instantly. Adamantium completely resists physical force, while Vibranium completely neutralizes it. Next is Mjolnir vs Stormbreaker. Follow so you don't miss it.",
+  "final_rule_outro": "Adamantium completely resists physical force, while Vibranium completely neutralizes it.",
+  "stickman_visual": "Stickman mascot standing between Wolverine's claws labeled ADAMANTIUM and Captain America's shield labeled VIBRANIUM on a pure white background.",
+  "patterns_used": [
+    "Declaration + Contract Hook (0-3s)",
+    "Misconception Flip Bridge",
+    "Mechanical Axis Contrast",
+    "Chiastic Mirrored Payoff",
+    "Specific Franchise Forward Tease"
+  ],
+  "script_lines": [
+    {
+      "second_marker": "0:00-0:03",
+      "move_name": "Move 1 - The Declaration",
+      "text": "This is Adamantium. This is Vibranium."
+    },
+    {
+      "second_marker": "0:03-0:04",
+      "move_name": "Move 2 - The Contract",
+      "text": "So what's the difference?"
+    },
+    {
+      "second_marker": "0:04-0:09",
+      "move_name": "Move 3 - The Misconception Flip",
+      "text": "Most people think they both just block bullets. They don't."
+    },
+    {
+      "second_marker": "0:09-0:16",
+      "move_name": "Move 4 - Mechanism A",
+      "text": "Adamantium is a man-made alloy engineered for pure, rigid hardness. It never bends, deforms, or absorbs kinetic impact."
+    },
+    {
+      "second_marker": "0:16-0:23",
+      "move_name": "Move 5 - Mechanism B",
+      "text": "But Vibranium is an extraterrestrial metal that absorbs kinetic energy directly into its atomic bonds, nullifying momentum instantly."
+    },
+    {
+      "second_marker": "0:23-0:27",
+      "move_name": "Move 6 - The Chiastic Payoff",
+      "text": "Adamantium completely resists physical force, while Vibranium completely neutralizes it."
+    },
+    {
+      "second_marker": "0:27-0:29",
+      "move_name": "Move 7 - Forward Tease",
+      "text": "Next is Mjolnir vs Stormbreaker. Follow so you don't miss it."
+    }
+  ],
+  "tts_segments": [
+    {
+      "segment_id": 1,
+      "timing": "0:00-0:03",
+      "move": "Move 1 - The Declaration",
+      "text": "This is Adamantium. This is Vibranium."
+    },
+    {
+      "segment_id": 2,
+      "timing": "0:03-0:04",
+      "move": "Move 2 - The Contract",
+      "text": "So what's the difference?"
+    },
+    {
+      "segment_id": 3,
+      "timing": "0:04-0:09",
+      "move": "Move 3 - The Misconception Flip",
+      "text": "Most people think they both just block bullets. They don't."
+    },
+    {
+      "segment_id": 4,
+      "timing": "0:09-0:16",
+      "move": "Move 4 - Mechanism A",
+      "text": "Adamantium is a man-made alloy engineered for pure, rigid hardness. It never bends, deforms, or absorbs kinetic impact."
+    },
+    {
+      "segment_id": 5,
+      "timing": "0:16-0:23",
+      "move": "Move 5 - Mechanism B",
+      "text": "But Vibranium is an extraterrestrial metal that absorbs kinetic energy directly into its atomic bonds, nullifying momentum instantly."
+    },
+    {
+      "segment_id": 6,
+      "timing": "0:23-0:27",
+      "move": "Move 6 - The Chiastic Payoff",
+      "text": "Adamantium completely resists physical force, while Vibranium completely neutralizes it."
+    },
+    {
+      "segment_id": 7,
+      "timing": "0:27-0:29",
+      "move": "Move 7 - Forward Tease",
+      "text": "Next is Mjolnir vs Stormbreaker. Follow so you don't miss it."
+    }
+  ],
+  "created_at": "2026-08-15T08:55:05.641468",
+  "status": "ready_for_tts"
+}

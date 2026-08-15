@@ -1,0 +1,51 @@
+# ==============================================================================
+# "Dont Mix This" - Generator Configuration Knobs
+# Grounded in Channel Performance Data (Phase 1 Report)
+# ==============================================================================
+
+# LLM Model Settings
+model: "gemini-3.6-flash"
+temperature: 0.7
+max_output_tokens: 8192
+
+# Duration & Pacing Constraints (Channel Sweet Spot: 21-30 seconds)
+target_duration_seconds: 26
+min_duration_seconds: 21
+max_duration_seconds: 30
+words_per_second: 2.8      # Channel baseline delivery speed (2.6 - 3.0 wps)
+max_word_count: 85         # Strict ceiling to prevent 36s+ retention cliff
+
+# Default Generation Settings
+default_num_variants: 3
+include_forward_tease: true
+
+# Tone & Voice Profile
+tone_profile: "confident referee, fast-paced, high energy, crisp, zero throat-clearing"
+voice_perspective: "objective third-person referee settling a heated fan debate"
+
+# Anti-AI Slop & Forbidden Phrasing Filter
+forbidden_phrases:
+  - "did you know"
+  - "in conclusion"
+  - "basically"
+  - "here's the thing"
+  - "let's dive in"
+  - "in today's video"
+  - "it's important to note"
+  - "it is worth noting"
+  - "some might say"
+  - "at the end of the day"
+  - "without further ado"
+  - "buckle up"
+  - "mind-blowing"
+  - "game-changer"
+  - "fascinating"
+  - "have you ever wondered"
+
+# Allowed Sentence Length Limits
+max_sentence_words: 9
+max_single_allowed_long_sentence: 12
+
+# Output Directories
+generated_scripts_dir: "generated_scripts"
+log_file: "logs/generations_log.jsonl"
