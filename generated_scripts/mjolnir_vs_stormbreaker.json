@@ -1,0 +1,110 @@
+{
+  "topic": "Mjolnir vs Stormbreaker",
+  "approved_variant_id": 1,
+  "angle_name": "Physical & Energy Channeling Contrast",
+  "title": "How Stormbreaker Overpowers Mjolnir's Magic",
+  "hashtags": [
+    "#thor",
+    "#marvel",
+    "#mjolnir",
+    "#stormbreaker",
+    "#dontmixthis",
+    "#shorts"
+  ],
+  "estimated_duration_seconds": 28.9,
+  "word_count": 81,
+  "speaking_pace_wps": 2.8,
+  "full_script_text": "This is Mjolnir. This is Stormbreaker. So what's the difference? You'd think Stormbreaker is just Mjolnir's upgraded bigger brother. It isn't. Mjolnir acts as a restrictive siphon, focusing Thor's internal power through Odin's worthiness enchantment to deliver precise strikes. Stormbreaker acts as an unbridled cosmic amplifier, summoning the Bifrost while bypassing high-yield energy beams. Mjolnir restrains energy through moral worth, while Stormbreaker multiplies power through raw physical endurance. Next is Cap's Shield vs Vibranium Suit. Follow so you don't miss it.",
+  "final_rule_outro": "Mjolnir restrains energy through moral worth, while Stormbreaker multiplies power through raw physical endurance.",
+  "stickman_visual": "Minimalist stickman standing on white background between Mjolnir (left) and Stormbreaker (right) with glowing labels.",
+  "patterns_used": [
+    "Declaration + Contract Hook (0-3s)",
+    "Varied Misconception Flip Bridge",
+    "Deep Mechanical Axis Contrast",
+    "Chiastic Mirrored Payoff",
+    "Specific Franchise Forward Tease"
+  ],
+  "script_lines": [
+    {
+      "second_marker": "0:00-0:03",
+      "move_name": "Move 1 - The Declaration",
+      "text": "This is Mjolnir. This is Stormbreaker."
+    },
+    {
+      "second_marker": "0:03-0:04",
+      "move_name": "Move 2 - The Contract",
+      "text": "So what's the difference?"
+    },
+    {
+      "second_marker": "0:04-0:09",
+      "move_name": "Move 3 - The Misconception Flip",
+      "text": "You'd think Stormbreaker is just Mjolnir's upgraded bigger brother. It isn't."
+    },
+    {
+      "second_marker": "0:09-0:16",
+      "move_name": "Move 4 - Mechanism A",
+      "text": "Mjolnir acts as a restrictive siphon, focusing Thor's internal power through Odin's worthiness enchantment to deliver precise strikes."
+    },
+    {
+      "second_marker": "0:16-0:23",
+      "move_name": "Move 5 - Mechanism B",
+      "text": "Stormbreaker acts as an unbridled cosmic amplifier, summoning the Bifrost while bypassing high-yield energy beams."
+    },
+    {
+      "second_marker": "0:23-0:27",
+      "move_name": "Move 6 - The Chiastic Payoff",
+      "text": "Mjolnir restrains energy through moral worth, while Stormbreaker multiplies power through raw physical endurance."
+    },
+    {
+      "second_marker": "0:27-0:29",
+      "move_name": "Move 7 - Forward Tease",
+      "text": "Next is Cap's Shield vs Vibranium Suit. Follow so you don't miss it."
+    }
+  ],
+  "tts_segments": [
+    {
+      "segment_id": 1,
+      "timing": "0:00-0:03",
+      "move": "Move 1 - The Declaration",
+      "text": "This is Mjolnir. This is Stormbreaker."
+    },
+    {
+      "segment_id": 2,
+      "timing": "0:03-0:04",
+      "move": "Move 2 - The Contract",
+      "text": "So what's the difference?"
+    },
+    {
+      "segment_id": 3,
+      "timing": "0:04-0:09",
+      "move": "Move 3 - The Misconception Flip",
+      "text": "You'd think Stormbreaker is just Mjolnir's upgraded bigger brother. It isn't."
+    },
+    {
+      "segment_id": 4,
+      "timing": "0:09-0:16",
+      "move": "Move 4 - Mechanism A",
+      "text": "Mjolnir acts as a restrictive siphon, focusing Thor's internal power through Odin's worthiness enchantment to deliver precise strikes."
+    },
+    {
+      "segment_id": 5,
+      "timing": "0:16-0:23",
+      "move": "Move 5 - Mechanism B",
+      "text": "Stormbreaker acts as an unbridled cosmic amplifier, summoning the Bifrost while bypassing high-yield energy beams."
+    },
+    {
+      "segment_id": 6,
+      "timing": "0:23-0:27",
+      "move": "Move 6 - The Chiastic Payoff",
+      "text": "Mjolnir restrains energy through moral worth, while Stormbreaker multiplies power through raw physical endurance."
+    },
+    {
+      "segment_id": 7,
+      "timing": "0:27-0:29",
+      "move": "Move 7 - Forward Tease",
+      "text": "Next is Cap's Shield vs Vibranium Suit. Follow so you don't miss it."
+    }
+  ],
+  "created_at": "2026-08-15T21:23:43.509312",
+  "status": "ready_for_tts"
+}

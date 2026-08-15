@@ -71,6 +71,41 @@ class ScriptValidator:
                 if "what's the difference" not in second_line and "what is the difference" not in second_line:
                     warnings.append("Second line does not contain the 'So what's the difference?' contract.")
 
+            # Move 3 check (Misconception Flip with phrasing diversity)
+            if len(script_lines) > 2:
+                third_line = script_lines[2].get("text", "").lower()
+                flip_cues = [
+                    "think", "not", "wrong", "backwards", "belief", "assume",
+                    "paper", "reality", "canon", "actually", "close", "myth",
+                    "never", "instead", "doesn't", "don't", "isn't", "aren't"
+                ]
+                if not any(cue in third_line for cue in flip_cues):
+                    warnings.append(f"Move 3 line does not appear to contain a sharp misconception flip: '{third_line}'")
+
+        # 5. Suggested Title Quality & High-CTR Format Check
+        title = variant.get("suggested_title", "")
+        if title:
+            title_lower = title.lower()
+            generic_patterns = [
+                r"vs\.?\s+.*the\s+real\s+difference",
+                r"vs\.?\s+.*explained",
+                r"vs\.?\s+.*what('s|\s+is)\s+the\s+difference",
+                r":\s*what('s|\s+is)\s+the\s+difference"
+            ]
+            for pat in generic_patterns:
+                if re.search(pat, title_lower):
+                    warnings.append(f"Title uses a generic formulaic format: '{title}'. Use causal formats like 'Why [X] Beats [Y]'.")
+                    break
+
+        # 6. Surface-level Cliché / Low-Lore Check
+        cliche_phrases = [
+            "is very strong", "is super strong", "is very powerful",
+            "are two powerful", "are powerful weapons", "is made of metal"
+        ]
+        for cp in cliche_phrases:
+            if cp in text_lower:
+                warnings.append(f"Script contains superficial descriptor '{cp}'. Replace with deep mechanical/lore trade-offs.")
+
         # Update computed fields in the variant dict
         variant["word_count"] = word_count
         variant["estimated_duration_seconds"] = duration_seconds

@@ -1,24 +1,25 @@
 {
   "topic": "Adamantium vs Vibranium",
   "approved_variant_id": 1,
-  "angle_name": "Physical and Kinetic Mechanics Contrast",
-  "title": "Adamantium vs Vibranium: You're Getting This Wrong",
+  "angle_name": "Core Physical & Kinetic Shock Mechanics",
+  "title": "Why Adamantium Transfers More Damage Than Vibranium",
   "hashtags": [
     "#adamantium",
     "#vibranium",
     "#marvel",
+    "#dontmixthis",
     "#shorts"
   ],
-  "estimated_duration_seconds": 27.5,
-  "word_count": 77,
+  "estimated_duration_seconds": 26.1,
+  "word_count": 73,
   "speaking_pace_wps": 2.8,
-  "full_script_text": "This is Adamantium. This is Vibranium. So what's the difference? Most people think they both just block bullets. They don't. Adamantium is a man-made alloy engineered for pure, rigid hardness. It never bends, deforms, or absorbs kinetic impact. But Vibranium is an extraterrestrial metal that absorbs kinetic energy directly into its atomic bonds, nullifying momentum instantly. Adamantium completely resists physical force, while Vibranium completely neutralizes it. Next is Mjolnir vs Stormbreaker. Follow so you don't miss it.",
-  "final_rule_outro": "Adamantium completely resists physical force, while Vibranium completely neutralizes it.",
-  "stickman_visual": "Stickman mascot standing between Wolverine's claws labeled ADAMANTIUM and Captain America's shield labeled VIBRANIUM on a pure white background.",
+  "full_script_text": "This is Adamantium. This is Vibranium. So what's the difference? You might think they absorb impacts identically. Not even close. Adamantium has unyielding atomic bonds. It never breaks, but redirects raw kinetic shock directly into your bones. Vibranium absorbs kinetic shockwaves into its lattice, storing energy until reaching a violent saturation limit. Adamantium resists pure physical force, while Vibranium cancels kinetic energy. Next is Beskar vs Mithril. Follow so you don't miss it.",
+  "final_rule_outro": "Adamantium resists pure physical force, while Vibranium cancels kinetic energy.",
+  "stickman_visual": "Stickman referee standing between a sharp silver metallic skeleton icon labeled 'ADAMANTIUM' and a glowing purple metallic shield labeled 'VIBRANIUM' on a pure white screen.",
   "patterns_used": [
     "Declaration + Contract Hook (0-3s)",
-    "Misconception Flip Bridge",
-    "Mechanical Axis Contrast",
+    "Varied Misconception Flip Bridge",
+    "Deep Mechanical Axis Contrast",
     "Chiastic Mirrored Payoff",
     "Specific Franchise Forward Tease"
   ],
@@ -36,27 +37,27 @@
     {
       "second_marker": "0:04-0:09",
       "move_name": "Move 3 - The Misconception Flip",
-      "text": "Most people think they both just block bullets. They don't."
+      "text": "You might think they absorb impacts identically. Not even close."
     },
     {
       "second_marker": "0:09-0:16",
       "move_name": "Move 4 - Mechanism A",
-      "text": "Adamantium is a man-made alloy engineered for pure, rigid hardness. It never bends, deforms, or absorbs kinetic impact."
+      "text": "Adamantium has unyielding atomic bonds. It never breaks, but redirects raw kinetic shock directly into your bones."
     },
     {
       "second_marker": "0:16-0:23",
       "move_name": "Move 5 - Mechanism B",
-      "text": "But Vibranium is an extraterrestrial metal that absorbs kinetic energy directly into its atomic bonds, nullifying momentum instantly."
+      "text": "Vibranium absorbs kinetic shockwaves into its lattice, storing energy until reaching a violent saturation limit."
     },
     {
       "second_marker": "0:23-0:27",
       "move_name": "Move 6 - The Chiastic Payoff",
-      "text": "Adamantium completely resists physical force, while Vibranium completely neutralizes it."
+      "text": "Adamantium resists pure physical force, while Vibranium cancels kinetic energy."
     },
     {
       "second_marker": "0:27-0:29",
       "move_name": "Move 7 - Forward Tease",
-      "text": "Next is Mjolnir vs Stormbreaker. Follow so you don't miss it."
+      "text": "Next is Beskar vs Mithril. Follow so you don't miss it."
     }
   ],
   "tts_segments": [
@@ -76,33 +77,33 @@
       "segment_id": 3,
       "timing": "0:04-0:09",
       "move": "Move 3 - The Misconception Flip",
-      "text": "Most people think they both just block bullets. They don't."
+      "text": "You might think they absorb impacts identically. Not even close."
     },
     {
       "segment_id": 4,
       "timing": "0:09-0:16",
       "move": "Move 4 - Mechanism A",
-      "text": "Adamantium is a man-made alloy engineered for pure, rigid hardness. It never bends, deforms, or absorbs kinetic impact."
+      "text": "Adamantium has unyielding atomic bonds. It never breaks, but redirects raw kinetic shock directly into your bones."
     },
     {
       "segment_id": 5,
       "timing": "0:16-0:23",
       "move": "Move 5 - Mechanism B",
-      "text": "But Vibranium is an extraterrestrial metal that absorbs kinetic energy directly into its atomic bonds, nullifying momentum instantly."
+      "text": "Vibranium absorbs kinetic shockwaves into its lattice, storing energy until reaching a violent saturation limit."
     },
     {
       "segment_id": 6,
       "timing": "0:23-0:27",
       "move": "Move 6 - The Chiastic Payoff",
-      "text": "Adamantium completely resists physical force, while Vibranium completely neutralizes it."
+      "text": "Adamantium resists pure physical force, while Vibranium cancels kinetic energy."
     },
     {
       "segment_id": 7,
       "timing": "0:27-0:29",
       "move": "Move 7 - Forward Tease",
-      "text": "Next is Mjolnir vs Stormbreaker. Follow so you don't miss it."
+      "text": "Next is Beskar vs Mithril. Follow so you don't miss it."
     }
   ],
-  "created_at": "2026-08-15T08:55:05.641468",
+  "created_at": "2026-08-15T21:23:14.874490",
   "status": "ready_for_tts"
 }

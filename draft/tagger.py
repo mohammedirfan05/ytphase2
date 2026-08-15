@@ -201,7 +201,15 @@ def determine_clause_role(
         return "wtd", "Rule: Core Question (WTD)", f"Question/contrast in '{clause_text}' -> wtd.png"
 
     # 3. Misconception / Negation Flip
-    if any(neg in low for neg in ["most people think", "they're not", "they are not", "they don't", "that's wrong", "that is wrong", "it's not", "it is not", "incorrect", "armors", "wrong"]):
+    misconception_cues = [
+        "most people think", "they're not", "they are not", "they don't", "that's wrong",
+        "that is wrong", "it's not", "it is not", "incorrect", "wrong", "backwards",
+        "you'd think", "you would think", "common belief", "not even close",
+        "fans assume", "in canon", "in reality", "myth is", "actually false",
+        "on paper", "not the case", "not quite", "doesn't work", "he isn't",
+        "she isn't", "they aren't"
+    ]
+    if any(neg in low for neg in misconception_cues):
         return "disagree", "Rule: Misconception Flip", f"Misconception/negation in '{clause_text}' -> disagree.png"
 
     # 4. Victorious / Definitive Dominance
