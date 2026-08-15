@@ -345,6 +345,28 @@ class CapCutDraftBuilder:
         script.add_track(pcc.TrackType.video, "mascot_track")
         mascot_clips, mascot_stats = optimize_mascot_timeline(tagged_subtitles, cfg, total_duration_us)
 
+        # Whoosh SFX on mascot side-switches (left <-> right)
+        sfx_whoosh = str(cfg.whoosh_sfx_path) if hasattr(cfg, "whoosh_sfx_path") and cfg.whoosh_sfx_path else str(cfg.assets_dir / "sound_effects" / "whoosh-clean.mp3")
+        if not os.path.isfile(sfx_whoosh):
+            alt_whoosh = cfg.assets_dir / "sound_effects" / "whoosh.mp3"
+            if alt_whoosh.is_file():
+                sfx_whoosh = str(alt_whoosh)
+
+        if os.path.isfile(sfx_whoosh) and len(mascot_clips) > 1:
+            w_dur = get_wav_duration_us(sfx_whoosh) or 400_000
+            whoosh_idx = 0
+            for idx in range(1, len(mascot_clips)):
+                prev_pose = mascot_clips[idx - 1]["pose"]
+                curr_pose = mascot_clips[idx]["pose"]
+                if (prev_pose == "left" and curr_pose == "right") or (prev_pose == "right" and curr_pose == "left"):
+                    w_start = max(0, mascot_clips[idx]["start_us"] - 60_000)
+                    whoosh_idx += 1
+                    track_name = f"sfx_whoosh_{whoosh_idx}"
+                    script.add_track(pcc.TrackType.audio, track_name)
+                    w_mat = pcc.AudioMaterial(os.path.abspath(sfx_whoosh))
+                    w_mat.duration = w_dur
+                    script.add_segment(pcc.AudioSegment(w_mat, pcc.Timerange(w_start, w_dur)), track_name=track_name)
+
         for m_clip_info in mascot_clips:
             dur = m_clip_info["duration_us"]
             if dur <= 0:

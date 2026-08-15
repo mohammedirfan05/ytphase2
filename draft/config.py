@@ -93,6 +93,7 @@ class DraftConfig:
     bg_image_path: Path = field(default_factory=lambda: PROJECT_ROOT / "assets" / "background" / "dotgrid.png")
     click_sfx_path: Path = field(default_factory=lambda: PROJECT_ROOT / "assets" / "sound_effects" / "mouse_click.mp3")
     pop_sfx_path: Path = field(default_factory=lambda: PROJECT_ROOT / "assets" / "sound_effects" / "pop.mp3")
+    whoosh_sfx_path: Path = field(default_factory=lambda: PROJECT_ROOT / "assets" / "sound_effects" / "whoosh-clean.mp3")
     processed_dir: Path = field(default_factory=lambda: PROJECT_ROOT / "assets" / "processed")
     input_dir: Path = field(default_factory=lambda: PROJECT_ROOT / "input")
     drafts_dir: str = field(default_factory=get_capcut_drafts_dir)

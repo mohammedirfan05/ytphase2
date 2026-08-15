@@ -37,6 +37,7 @@ from draft.builder import CapCutDraftBuilder
 from draft.stt import transcribe_audio_words, align_words_with_script, chunk_words_to_raw_srt, get_wav_duration_us
 from draft.tagger import generate_tagged_subtitles, build_semantic_tagged_subtitles
 from draft.image_processor import find_comparison_images
+from draft.cleaner import safe_cleanup_workspace
 
 console = Console(force_terminal=True, legacy_windows=False)
 
@@ -75,8 +76,9 @@ def run_from_audio(
     topic = f"{concept_x} vs {concept_y}"
     safe_topic = draft_name or re.sub(r'[^a-zA-Z0-9_-]', '_', topic.lower()).strip('_')
 
-    outputs_dir = Path("outputs")
-    outputs_dir.mkdir(parents=True, exist_ok=True)
+    # Topic-scoped subfolder inside outputs/
+    topic_output_dir = Path("outputs") / safe_topic
+    topic_output_dir.mkdir(parents=True, exist_ok=True)
 
     # Check for optional reference script file
     if not script_text:
@@ -111,8 +113,8 @@ def run_from_audio(
                 concept_y=concept_y
             )
 
-            # Save clean SRT
-            srt_path = outputs_dir / f"{safe_topic}.srt"
+            # Save clean SRT inside topic-scoped subfolder
+            srt_path = topic_output_dir / f"{safe_topic}.srt"
             srt_lines = []
             for s in tagged_subs:
                 st_str = f"{s.start_ms // 3600000:02d}:{(s.start_ms % 3600000) // 60000:02d}:{(s.start_ms % 60000) // 1000:02d},{s.start_ms % 1000:03d}"
@@ -121,8 +123,8 @@ def run_from_audio(
             with open(srt_path, "w", encoding="utf-8") as f:
                 f.write("\n".join(srt_lines))
 
-            # Save Mascot Audit Log
-            audit_log_path = outputs_dir / f"{safe_topic}_mascot_audit.log"
+            # Save Mascot Audit Log inside topic-scoped subfolder
+            audit_log_path = topic_output_dir / f"{safe_topic}_mascot_audit.log"
             with open(audit_log_path, "w", encoding="utf-8") as f:
                 f.write(f"=== Mascot Tagging & Caption Audit Log for '{topic}' ===\n\n")
                 f.write("\n".join(audit_logs))
@@ -219,7 +221,45 @@ def main():
     parser.add_argument("--y", type=str, default=None, help="Entity Y name (e.g. Stormbreaker)")
     parser.add_argument("--script", "-s", type=str, default=None, help="Optional reference script text or .txt file")
     parser.add_argument("--draft-name", "-n", type=str, default=None, help="Custom CapCut draft project name")
+    parser.add_argument("--clean", action="store_true", help="Safely cleans transient outputs & processed crops (STRICTLY preserves input/ images)")
     args = parser.parse_args()
+
+    # If --clean is requested, perform safe workspace cleanup
+    if args.clean:
+        console.print(Panel.fit(
+            "[bold cyan]🧹 Dont Mix This — Safe Workspace Cleaner[/bold cyan]\n"
+            "[dim]Clearing temporary outputs & processed preview crops...[/dim]\n"
+            "[bold green]✓ STRICT SAFETY:[/bold green] [italic]Images in 'input/' are completely untouched.[/italic]",
+            border_style="cyan"
+        ))
+        res = safe_cleanup_workspace()
+        
+        table = Table(title="Cleaned Artifacts Summary", show_header=True, header_style="bold magenta", expand=True)
+        table.add_column("Category", style="bold white", width=26)
+        table.add_column("Items Removed", style="bold yellow", width=18)
+        table.add_column("Details", style="dim", width=36)
+
+        table.add_row(
+            "Project Output Subfolders",
+            f"{res['deleted_folders_count']} folders",
+            ", ".join(res['deleted_folders'][:3]) + ("..." if len(res['deleted_folders']) > 3 else "") or "None"
+        )
+        table.add_row(
+            "Transient Files & Audio",
+            f"{res['deleted_files_count']} files",
+            f"{res['mb_freed']} MB freed from disk"
+        )
+        table.add_row(
+            "User Input Images",
+            "[bold green]0 touched (Preserved)[/bold green]",
+            "input/ directory completely untouched"
+        )
+        console.print(table)
+        console.print(Panel(
+            f"[bold green]✓ Cleanup complete![/bold green] Freed [bold yellow]{res['mb_freed']} MB[/bold yellow]. Workspace is clean.",
+            border_style="green"
+        ))
+        return
 
     # If --audio is provided, bypass script generator and TTS
     if args.audio:
@@ -348,17 +388,17 @@ def main():
     # 6. Save Approved Script JSON
     saved_json_path = logger.save_approved_script(topic, approved_variant)
     
-    # Also save copy in outputs directory
-    outputs_dir = Path("outputs")
-    outputs_dir.mkdir(parents=True, exist_ok=True)
-    out_json_path = outputs_dir / f"{safe_topic}.json"
+    # Topic-scoped output subfolder
+    topic_output_dir = Path("outputs") / safe_topic
+    topic_output_dir.mkdir(parents=True, exist_ok=True)
+    out_json_path = topic_output_dir / f"{safe_topic}.json"
     with open(out_json_path, "w", encoding="utf-8") as f:
         json.dump(approved_variant, f, indent=2, ensure_ascii=False)
 
     console.print(f"\n[green]✓ Script approved & saved to:[/green] [bold yellow]{saved_json_path}[/bold yellow]")
 
     # 7. Generate TTS Audio via Gemini 3.1 Flash TTS
-    tts_audio_path = outputs_dir / f"{safe_topic}.wav"
+    tts_audio_path = topic_output_dir / f"{safe_topic}.wav"
     script_text = approved_variant.get("full_script_text", "")
 
     console.print(Panel(
@@ -392,8 +432,8 @@ def main():
                 concept_y=concept_y
             )
 
-            # Save clean SRT
-            srt_path = outputs_dir / f"{safe_topic}.srt"
+            # Save clean SRT inside topic-scoped subfolder
+            srt_path = topic_output_dir / f"{safe_topic}.srt"
             srt_lines = []
             for s in tagged_subs:
                 st_str = f"{s.start_ms // 3600000:02d}:{(s.start_ms % 3600000) // 60000:02d}:{(s.start_ms % 60000) // 1000:02d},{s.start_ms % 1000:03d}"
@@ -402,8 +442,8 @@ def main():
             with open(srt_path, "w", encoding="utf-8") as f:
                 f.write("\n".join(srt_lines))
 
-            # Save Mascot Audit Log
-            audit_log_path = outputs_dir / f"{safe_topic}_mascot_audit.log"
+            # Save Mascot Audit Log inside topic-scoped subfolder
+            audit_log_path = topic_output_dir / f"{safe_topic}_mascot_audit.log"
             with open(audit_log_path, "w", encoding="utf-8") as f:
                 f.write(f"=== Mascot Tagging & Caption Audit Log for '{topic}' ===\n\n")
                 f.write("\n".join(audit_logs))
