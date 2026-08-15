@@ -1,0 +1,123 @@
+1
+00:00:00,000 --> 00:00:00,900
+This is a [IMG:left]
+
+2
+00:00:00,900 --> 00:00:01,680
+Nanotech suit. [IMG:left]
+
+3
+00:00:01,960 --> 00:00:02,520
+This is a [IMG:right]
+
+4
+00:00:02,520 --> 00:00:03,400
+Vibranium suit. [IMG:right]
+
+5
+00:00:03,620 --> 00:00:04,020
+So what's the [IMG:wtd]
+
+6
+00:00:04,020 --> 00:00:04,300
+difference? [IMG:wtd]
+
+7
+00:00:04,680 --> 00:00:05,300
+Most people think [IMG:disagree]
+
+8
+00:00:05,300 --> 00:00:05,840
+both are just [IMG:disagree]
+
+9
+00:00:05,840 --> 00:00:06,940
+super-strong armors. [IMG:disagree]
+
+10
+00:00:07,160 --> 00:00:07,620
+They're not. [IMG:disagree]
+
+11
+00:00:08,060 --> 00:00:09,780
+Nanotech reshapes micro-bots [IMG:left]
+
+12
+00:00:09,780 --> 00:00:10,820
+instantly into weapons [IMG:left]
+
+13
+00:00:10,820 --> 00:00:11,340
+or shields, [IMG:left]
+
+14
+00:00:11,340 --> 00:00:12,620
+but permanently loses [IMG:thinking]
+
+15
+00:00:12,620 --> 00:00:13,320
+total mass [IMG:thinking]
+
+16
+00:00:13,320 --> 00:00:14,180
+whenever damaged. [IMG:thinking]
+
+17
+00:00:14,520 --> 00:00:15,880
+Vibranium traps incoming [IMG:right]
+
+18
+00:00:15,880 --> 00:00:17,180
+kinetic energy inside [IMG:right]
+
+19
+00:00:17,180 --> 00:00:17,980
+its atomic weave, [IMG:right]
+
+20
+00:00:18,440 --> 00:00:19,300
+storing physical force [IMG:right]
+
+21
+00:00:19,300 --> 00:00:20,200
+until releasing a [IMG:right]
+
+22
+00:00:20,200 --> 00:00:21,220
+massive shockwave. [IMG:right]
+
+23
+00:00:21,660 --> 00:00:22,800
+Nanotech burns mass [IMG:left]
+
+24
+00:00:22,800 --> 00:00:23,780
+to construct offense, [IMG:left]
+
+25
+00:00:23,780 --> 00:00:25,140
+while Vibranium absorbs [IMG:right]
+
+26
+00:00:25,140 --> 00:00:26,040
+hit energy to [IMG:right]
+
+27
+00:00:26,040 --> 00:00:26,740
+burst power. [IMG:right]
+
+28
+00:00:26,740 --> 00:00:28,240
+Next is Uru [IMG:final_end]
+
+29
+00:00:28,240 --> 00:00:29,160
+Metal vs Adamantium. [IMG:final_end]
+
+30
+00:00:29,420 --> 00:00:29,880
+Follow so you [IMG:final_end]
+
+31
+00:00:29,880 --> 00:00:30,340
+don't miss it. [IMG:final_end]
